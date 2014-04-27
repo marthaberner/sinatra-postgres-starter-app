@@ -15,14 +15,22 @@ class Application < Sinatra::Application
     erb :index, locals: {motorcycles: DB[:motorcycles].to_a}
   end
 
-  get '/motorcycles/new'do
+  get '/motorcycles/new' do
     erb :'motorcycles/new'
   end
 
-  post '/motorcycles'do
+  post '/motorcycles' do
     DB[:motorcycles].insert(name: params[:name], description: params[:description])
 
     redirect '/'
+  end
+
+  get '/motorcycles/:id' do
+
+    bike = DB[:motorcycles][id: params[:id]]
+
+    erb :'/motorcycles/show', locals: {bike: bike}
+
   end
 end
 

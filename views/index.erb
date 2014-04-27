@@ -1,5 +1,5 @@
 <h1>
- I Heart Motorcycles!
+  I Heart Motorcycles!
 </h1>
 
 <h5><a href="/motorcycles/new">Add A Motorcycle</a></h5>
@@ -9,14 +9,15 @@
   <th>Name</th>
   <th>Description</th>
   </thead>
-<tbody>
-<% motorcycles.each do |bike| %>
-<tr><td>
-<%= bike[:name]%></td>
- <td> <%= bike[:description] %></td>
-</tr>
-<% end %>
+  <tbody>
+  <% motorcycles.each do |bike| %>
+    <tr>
+      <td>
+        <a href='/motorcycles/<%= bike[:id] %>'><%=bike[:name] %></a></td>
+      <td> <a href='/motorcycles/<%= bike[:id] %>'><%= bike[:description] %></td>
+    </tr>
+  <% end %>
 
-</tbody>
+  </tbody>
 </table>
 
