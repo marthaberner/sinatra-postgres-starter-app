@@ -1,6 +1,14 @@
 <table border="black">
-  <a href="/motorcycles/<%= bike[:id] %>/edit">Edit</a>
-  <thead>
+  <tr>
+    <td><a href="/motorcycles/<%= bike[:id] %>/edit">Edit</a>
+    </td>
+  </tr>
+
+  <form action="/motorcycles/<%= bike[:id] %>" method="post">
+    <input type="hidden" name="_method" value="delete"/>
+    <input type="submit" value="Delete">
+  </form>
+
   <th>Name</th>
   <th>Description</th>
   </thead>
@@ -10,6 +18,5 @@
       <a href='/motorcycles/<%= bike[:id] %>'><%= bike[:name] %></a></td>
     <td><a href='/motorcycles/<%= bike[:id] %>'><%= bike[:description] %></td>
   </tr>
-
   </tbody>
 </table>
