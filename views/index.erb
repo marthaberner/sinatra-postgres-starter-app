@@ -1,3 +1,22 @@
-<p>
-  Welcome!
-</p>
+<h1>
+ I Heart Motorcycles!
+</h1>
+
+<h5><a href="/motorcycles/new">Add A Motorcycle</a></h5>
+
+<table border="black" padding="10">
+  <thead>
+  <th>Name</th>
+  <th>Description</th>
+  </thead>
+<tbody>
+<% motorcycles.each do |bike| %>
+<tr><td>
+<%= bike[:name]%></td>
+ <td> <%= bike[:description] %></td>
+</tr>
+<% end %>
+
+</tbody>
+</table>
+
