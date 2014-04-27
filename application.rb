@@ -26,11 +26,20 @@ class Application < Sinatra::Application
   end
 
   get '/motorcycles/:id' do
-
     bike = DB[:motorcycles][id: params[:id]]
-
     erb :'/motorcycles/show', locals: {bike: bike}
+  end
 
+  get '/motorcycles/:id/edit' do
+    bike = DB[:motorcycles][id: params[:id]]
+    erb :'motorcycles/edit', locals: {bike: bike}
+  end
+
+  put '/motorcycles/:id' do
+    id = params[:id]
+    DB[:motorcycles].where(id: id).update(name: params[:name], description: params[:description])
+
+    redirect '/'
   end
 end
 

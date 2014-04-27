@@ -1,0 +1,17 @@
+<div>
+  <form action="/motorcycles/<%= bike[:id] %>" method="post">
+    <input type="hidden" name="_method" value="put">
+
+    <p>
+      <input type="text" autofocus="autofocus" name="name" value="<%= bike[:name] %>">
+    </p>
+
+    <p>
+      <input type="text" name="description" value="<%= bike[:description] %>">
+    </p>
+
+    <p>
+      <input type="submit" value="Update Motorcycle">
+    </p>
+  </form>
+</div>
