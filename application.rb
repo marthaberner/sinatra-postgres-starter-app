@@ -9,10 +9,12 @@ class Application < Sinatra::Application
     # application below this comment. One example would be repositories
     # to store things in a database.
 
+    @db = DB[:motorcycles]
+
   end
 
   get '/' do
-    erb :index, locals: {motorcycles: DB[:motorcycles].to_a}
+    erb :index, locals: {motorcycles: @db.to_a}
   end
 
   get '/motorcycles/new' do
@@ -20,7 +22,7 @@ class Application < Sinatra::Application
   end
 
   post '/motorcycles' do
-    DB[:motorcycles].insert(name: params[:name], description: params[:description])
+    @db.insert(name: params[:name], description: params[:description])
 
     redirect '/'
   end
@@ -31,20 +33,20 @@ class Application < Sinatra::Application
   end
 
   get '/motorcycles/:id/edit' do
-    bike = DB[:motorcycles][id: params[:id]]
+    bike = @db[id: params[:id]]
     erb :'motorcycles/edit', locals: {bike: bike}
   end
 
   put '/motorcycles/:id' do
     id = params[:id]
-    DB[:motorcycles].where(id: id).update(name: params[:name], description: params[:description])
+    @db.where(id: id).update(name: params[:name], description: params[:description])
 
     redirect '/'
   end
 
   delete '/motorcycles/:id' do
     id = params[:id]
-    DB[:motorcycles].where(id: id).delete
+    @db.where(id: id).delete
 
     redirect '/'
   end

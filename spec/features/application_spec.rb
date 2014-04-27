@@ -37,6 +37,7 @@ feature 'Motorcycles' do
     click_link 'Suzuki'
     click_on 'Delete'
 
+    expect(page).to have_content 'I Heart Motorcycles!'
     expect(page).to have_no_content 'Suzuki'
     expect(page).to have_no_content '1977, 650 CC'
   end
